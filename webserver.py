@@ -1,7 +1,11 @@
 import socket
 import sys
 
-port = sys.argv[1]
+if len(sys.argv) > 1:
+    port = sys.argv[1]
+else:
+    port = 28333
+    
 s = socket.socket()
 s.bind(('', int(port)))
 s.listen()

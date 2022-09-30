@@ -2,7 +2,10 @@ import socket
 import sys
 
 host = sys.argv[1]
-port = int(sys.argv[2])
+if len(sys.argv) > 2:
+    port = int(sys.argv[2])
+else:
+    port = 80
 sock = socket.socket()
 sock.connect((host, port))
 s = f"GET / HTTP/1.1\r\n\
