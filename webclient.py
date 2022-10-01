@@ -11,14 +11,14 @@ sock.connect((host, port))
 s = f"GET / HTTP/1.1\r\n\
 Host: {host}\r\n\
 Connection: close\r\n\r\n"
-s = s.encode()
+s = s.encode("ISO-8859-1")
 sock.sendall(s)
 response = ''
 while True: 
     chunk = sock.recv(4096)
     if len(chunk) == 0:
         break
-    response = response + chunk.decode()
+    response = response + chunk.decode("ISO-8859-1")
 sock.close()
 print(response)
 

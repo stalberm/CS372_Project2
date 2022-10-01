@@ -15,12 +15,12 @@ Content-Length: 6\r\n\
 Connection: close\r\n\r\n\
 Hello!"
 
-response = response.encode()
+response = response.encode("ISO-8859-1")
 while True:
     new_conn = s.accept()
     new_socket = new_conn[0]
     while True: 
-        if new_socket.recv(4096).decode().find("\r\n\r\n"):
+        if new_socket.recv(4096).decode("ISO-8859-1").find("\r\n\r\n"):
             break
     new_socket.sendall(response)
     new_socket.close()
