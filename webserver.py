@@ -19,8 +19,11 @@ response = response.encode("ISO-8859-1")
 while True:
     new_conn = s.accept()
     new_socket = new_conn[0]
-    while True: 
-        if new_socket.recv(4096).decode("ISO-8859-1").find("\r\n\r\n"):
+    request = ''
+    while True:
+        chunk = new_socket.recv(4096).decode("ISO-8859-1")
+        request = request + chunk
+        if request.find("\r\n\r\n"):
             break
     new_socket.sendall(response)
     new_socket.close()
